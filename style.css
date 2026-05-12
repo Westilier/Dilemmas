@@ -15,7 +15,6 @@ body {
     overflow-x: hidden;
 }
 
-/* фоновые сферы */
 .orb {
     position: fixed;
     border-radius: 50%;
@@ -61,7 +60,6 @@ body {
     z-index: 2;
 }
 
-/* ----- КРУПНАЯ КАРТИНКА ВМЕСТО HEADER ----- */
 .hero-image {
     position: relative;
     width: 100%;
@@ -103,7 +101,6 @@ body {
     opacity: 0.9;
 }
 
-/* Сетка карточек (превью) */
 .dilemmas-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -111,7 +108,6 @@ body {
     margin-bottom: 3rem;
 }
 
-/* Карточка-заголовок (превью) */
 .preview-card {
     background: rgba(25, 35, 50, 0.7);
     backdrop-filter: blur(12px);
@@ -154,7 +150,6 @@ body {
     margin-right: 4px;
 }
 
-/* Детальный вид */
 .back-button {
     background: rgba(20, 30, 40, 0.9);
     border: 1px solid #FFB347;
@@ -242,7 +237,6 @@ footer i {
     color: #FFAA55;
 }
 
-/* делаем страницу длиннее дополнительными отступами */
 body {
     padding-bottom: 4rem;
 }
