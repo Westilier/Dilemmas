@@ -5,12 +5,11 @@ const dilemmas = {
     // Корневые дилеммы (видны в списке)
     1: {
         id: 1,
-        title: "Находка кошелька",
-        text: "Вы нашли кошелёк с крупной суммой денег и документами владельца. Рядом никого нет.",
+        title: "08:31 AM",
+        text: "Employees suddenly report encrypted files, inaccessible systems, and ransom notes appearing across the network. The CEO demands immediate action while your SOC team suspects the attackers still have access.",
         options: [
-            { text: "Вернуть кошелёк владельцу целиком", nextId: 9 },
-            { text: "Забрать деньги, документы выбросить", nextId: 10 },
-            { text: "Забрать половину денег, а кошелёк подбросить в полицию", nextId: 11 }
+            { text: "Send a company-wide alert immediately", nextId: 101 },
+            { text: "Investigate quietly before informing staff", nextId: 102 }
         ]
     },
     2: {
@@ -108,7 +107,129 @@ const dilemmas = {
     29: { id: 29, title: "Краудфандинг", text: "Люди собрали деньги, лекарство купили. Родственник спасён, и вы не нарушили закон.", options: [{ text: "Вернуться к списку", nextId: null }] },
     30: { id: 30, title: "Полиция", text: "Приехали, составили протокол. Соседи затаили злобу, но музыка стихла.", options: [{ text: "Вернуться к списку", nextId: null }] },
     31: { id: 31, title: "Дипломатия", text: "Вы договорились: они слушают музыку до 22:00. Компромисс найден.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    32: { id: 32, title: "Терпение", text: "Вы купили беруши, но не высыпаетесь из-за вибрации. Здоровье ухудшилось.", options: [{ text: "Вернуться к списку", nextId: null }] }
+    32: { id: 32, title: "Терпение", text: "Вы купили беруши, но не высыпаетесь из-за вибрации. Здоровье ухудшилось.", options: [{ text: "Вернуться к списку", nextId: null }] },
+    101: {
+        id: 101,
+        title: "Containment Decision",
+        text: "Employees are now aware of the attack. Panic spreads internally, but suspicious activity reports increase dramatically.",
+        options: [
+            { text: "Shut down the entire corporate network", nextId: 103 },
+            { text: "Keep critical systems online", nextId: 104 }
+        ]
+    },
+
+    // LEVEL 2B
+    102: {
+        id: 102,
+        title: "Silent Investigation",
+        text: "You avoid public panic, but employees continue normal work while the ransomware may still be spreading.",
+        options: [
+            { text: "Start a full forensic investigation", nextId: 105 },
+            { text: "Focus on restoring operations first", nextId: 106 }
+        ]
+    },
+
+    // LEVEL 3A1
+    103: {
+        id: 103,
+        title: "Total Shutdown",
+        text: "The attack appears contained, but business operations are almost completely offline.",
+        options: [
+            { text: "Pay the ransom", nextId: 107 },
+            { text: "Refuse payment", nextId: 108 }
+        ]
+    },
+
+    // LEVEL 3A2
+    104: {
+        id: 104,
+        title: "Partial Isolation",
+        text: "Core services remain online, but there is a risk the attackers still maintain access to parts of the network.",
+        options: [
+            { text: "Hire external incident response experts", nextId: 109 },
+            { text: "Handle everything internally", nextId: 110 }
+        ]
+    },
+
+    // LEVEL 3B1
+    105: {
+        id: 105,
+        title: "Forensic Priority",
+        text: "Your team collects evidence and analyzes compromised systems, but recovery slows significantly.",
+        options: [
+            { text: "Disclose the breach publicly", nextId: 111 },
+            { text: "Keep the incident confidential", nextId: 112 }
+        ]
+    },
+
+    // LEVEL 3B2
+    106: {
+        id: 106,
+        title: "Operational Recovery",
+        text: "Systems are restored quickly, but critical forensic evidence may be lost forever.",
+        options: [
+            { text: "Contact law enforcement", nextId: 113 },
+            { text: "Handle the incident privately", nextId: 114 }
+        ]
+    },
+
+    // ENDINGS
+    107: {
+        id: 107,
+        title: "Ending: Fast Recovery, Permanent Risk",
+        text: "The attackers provide a working decryptor and systems recover quickly. Months later, your company becomes known among ransomware groups as a business willing to pay.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    108: {
+        id: 108,
+        title: "Ending: Expensive Integrity",
+        text: "Recovery takes weeks and some data is permanently lost. However, regulators and partners praise the company for refusing to fund cybercriminals.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    109: {
+        id: 109,
+        title: "Ending: Controlled Damage",
+        text: "External responders identify hidden persistence mechanisms and fully remove the attackers. The incident is expensive, but contained.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    110: {
+        id: 110,
+        title: "Ending: Silent Spread",
+        text: "Your exhausted internal team misses several compromised systems. Two weeks later, ransomware returns.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    111: {
+        id: 111,
+        title: "Ending: Painful Transparency",
+        text: "The breach becomes public immediately. The company suffers short-term reputational damage, but customers appreciate the honesty.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    112: {
+        id: 112,
+        title: "Ending: The Leak",
+        text: "Journalists eventually uncover the breach themselves. The company is accused of hiding the incident from customers and regulators.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    113: {
+        id: 113,
+        title: "Ending: Under Investigation",
+        text: "Law enforcement assists with threat intelligence and attribution. Recovery succeeds slowly under heavy regulatory oversight.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
+    114: {
+        id: 114,
+        title: "Ending: Back to Business",
+        text: "Operations recover quickly. Six months later, stolen company data appears online and customers begin filing lawsuits.",
+        options: [{ text: "Return to dilemmas", nextId: null }]
+    },
+
 };
 
 // Хранилище выбранных ответов (для корневых дилемм не нужно, так как ветвление ведёт к результатам)
