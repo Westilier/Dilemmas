@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0f1a;
+    min-height: 100vh;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* фоновые сферы */
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: -1;
+    animation: float 20s infinite alternate ease-in-out;
+}
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #ff8c42, #ff3b6f);
+    top: -150px;
+    left: -150px;
+}
+.orb-2 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #3b82f6, #9333ea);
+    bottom: -200px;
+    right: -200px;
+    animation-duration: 25s;
+}
+.orb-3 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #facc15, #ff6a00);
+    top: 40%;
+    left: 70%;
+    animation-duration: 18s;
+    opacity: 0.3;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 40px) scale(1.1); }
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* ----- КРУПНАЯ КАРТИНКА ВМЕСТО HEADER ----- */
+.hero-image {
+    position: relative;
+    width: 100%;
+    border-radius: 2rem;
+    overflow: hidden;
+    margin-bottom: 3rem;
+    box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 200, 100, 0.3);
+}
+.hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.5s ease;
+}
+.hero-image:hover .hero-img {
+    transform: scale(1.02);
+}
+.hero-text {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    padding: 0.6rem 1.2rem;
+    border-radius: 2rem;
+    color: #FFEFD5;
+    font-weight: 500;
+}
+.hero-text h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: #FFE6B0;
+}
+.hero-text p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Сетка карточек (превью) */
+.dilemmas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Карточка-заголовок (превью) */
+.preview-card {
+    background: rgba(25, 35, 50, 0.7);
+    backdrop-filter: blur(12px);
+    border-radius: 1.8rem;
+    padding: 1.8rem 1.5rem;
+    border: 1px solid rgba(255, 200, 120, 0.3);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    transform: translateY(0);
+}
+.preview-card:hover {
+    transform: translateY(-8px);
+    background: rgba(40, 55, 75, 0.8);
+    border-color: #FFC278;
+    box-shadow: 0 20px 30px -12px black;
+}
+.preview-card i {
+    font-size: 2.2rem;
+    color: #FFB347;
+    margin-bottom: 1rem;
+}
+.preview-card h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #FEF0DA;
+    margin-bottom: 0.5rem;
+}
+.preview-status {
+    font-size: 0.75rem;
+    color: #D6E2F0;
+    background: rgba(0,0,0,0.3);
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;
+    margin-top: 0.8rem;
+}
+.preview-status i {
+    font-size: 0.7rem;
+    margin-right: 4px;
+}
+
+/* Детальный вид */
+.back-button {
+    background: rgba(20, 30, 40, 0.9);
+    border: 1px solid #FFB347;
+    padding: 0.6rem 1.2rem;
+    border-radius: 2.5rem;
+    color: #FFDFA5;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.back-button:hover {
+    background: #2A4A5E;
+    transform: translateX(-5px);
+}
+
+.detail-card-container {
+    background: rgba(20, 32, 45, 0.85);
+    backdrop-filter: blur(16px);
+    border-radius: 2rem;
+    padding: 2rem;
+    border: 1px solid rgba(255, 200, 100, 0.4);
+    box-shadow: 0 20px 35px -10px black;
+    margin-bottom: 2rem;
+}
+
+.detail-text {
+    font-size: 1.45rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: #FCF3E0;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 190, 80, 0.5);
+}
+.detail-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.detail-option-btn {
+    background: rgba(15, 25, 35, 0.8);
+    border: 1px solid #daa75b;
+    padding: 0.9rem 1.2rem;
+    border-radius: 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #EDE5D5;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+.detail-option-btn i {
+    font-size: 1.2rem;
+    color: #FFC285;
+}
+.detail-option-btn.selected-opt {
+    background: linear-gradient(95deg, #2f6b5c, #235b4b);
+    border-left: 5px solid #FFD966;
+}
+.detail-option-btn:hover {
+    background: #3a5e74;
+    transform: translateX(5px);
+}
+
+footer {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #8da0b0;
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 3rem;
+    padding: 1rem;
+    border-top: 1px dashed rgba(255,200,100,0.3);
+}
+footer i {
+    color: #FFAA55;
+}
+
+/* делаем страницу длиннее дополнительными отступами */
+body {
+    padding-bottom: 4rem;
+}
+.dilemmas-grid {
+    margin-bottom: 4rem;
+}
+
+@media (max-width: 700px) {
+    body { padding: 1rem; }
+    .hero-text h1 { font-size: 1rem; }
+    .hero-text p { font-size: 0.7rem; }
+    .detail-text { font-size: 1.2rem; }
+}
