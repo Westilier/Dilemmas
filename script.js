@@ -1,113 +1,44 @@
-// ----- ДИЛЕММЫ С ВЕТВЛЕНИЕМ -----
-// У каждой дилеммы есть id, title, text и массив options,
-// где каждый option содержит текст и nextId (id следующей дилеммы, или null если конец)
 const dilemmas = {
-    // Корневые дилеммы (видны в списке)
     1: {
         id: 1,
-        title: "08:31 AM",
+        title: "Dawn of the Attack",
         text: "Employees suddenly report encrypted files, inaccessible systems, and ransom notes appearing across the network. The CEO demands immediate action while your SOC team suspects the attackers still have access.",
         options: [
             { text: "Send a company-wide alert immediately", nextId: 101 },
             { text: "Investigate quietly before informing staff", nextId: 102 }
         ]
     },
+
     2: {
         id: 2,
-        title: "Ложь ради друга",
-        text: "Лучший друг просит солгать его родителям, чтобы он мог пойти на сомнительную вечеринку.",
+        title: "Backdoor for a Client",
+        text: "You are an independent developer. The client may refuse to pay after accepting the product. You have the technical ability to plant a hidden backdoor to remotely disable the system if the client cheats you. However, if discovered, it's a criminal offense. What is your decision?",
         options: [
-            { text: "Скажу правду родителям", nextId: 12 },
-            { text: "Помогу другу и прикрою его", nextId: 13 },
-            { text: "Скажу, что ничего не знаю, уйду от ответа", nextId: 14 }
-        ]
-    },
-    3: {
-        id: 3,
-        title: "Идея коллеги",
-        text: "На работе вы узнаёте, что коллега получит повышение, используя вашу идею. Никто не в курсе.",
-        options: [
-            { text: "Промолчу, чтобы избежать конфликта", nextId: 15 },
-            { text: "Отстою справедливость с доказательствами", nextId: 16 },
-            { text: "Анонимно сообщу начальству", nextId: 17 }
-        ]
-    },
-    4: {
-        id: 4,
-        title: "Нападение на прохожего",
-        text: "Вы видите, как группа подростков издевается над прохожим. Вмешаться опасно.",
-        options: [
-            { text: "Позову на помощь / вызову полицию", nextId: 18 },
-            { text: "Пройду мимо, риск слишком велик", nextId: 19 },
-            { text: "Попытаюсь отвлечь подростков криком", nextId: 20 }
-        ]
-    },
-    5: {
-        id: 5,
-        title: "Ради карьеры или любви",
-        text: "Престижная работа в другом городе, но придётся расстаться с любимым человеком надолго.",
-        options: [
-            { text: "Выберу карьерный рост и переезд", nextId: 21 },
-            { text: "Останусь ради отношений", nextId: 22 },
-            { text: "Предложу партнёру переехать вместе", nextId: 23 }
-        ]
-    },
-    6: {
-        id: 6,
-        title: "Мелкая кража близкого",
-        text: "Близкий человек совершил мелкую кражу в магазине. Никто не заметил.",
-        options: [
-            { text: "Сделаю вид, что ничего не было", nextId: 24 },
-            { text: "Скажу о недопустимости и попрошу вернуть", nextId: 25 },
-            { text: "Тайком верну вещь сам", nextId: 26 }
-        ]
-    },
-    7: {
-        id: 7,
-        title: "Лекарство для близкого",
-        text: "У вашего родственника редкая болезнь. Лекарство очень дорогое, но вы не можете его купить. Аптекарь отказывается дать бесплатно.",
-        options: [
-            { text: "Украду лекарство, чтобы спасти жизнь", nextId: 27 },
-            { text: "Не стану нарушать закон, поищу другой путь", nextId: 28 },
-            { text: "Попробую собрать деньги через краудфандинг", nextId: 29 }
-        ]
-    },
-    8: {
-        id: 8,
-        title: "Соседский шум",
-        text: "Соседи сверху каждый вечер громко слушают музыку, мешая вам спать. Вы просили убавить — бесполезно.",
-        options: [
-            { text: "Вызову полицию по закону", nextId: 30 },
-            { text: "Постараюсь договориться ещё раз, но мягко", nextId: 31 },
-            { text: "Куплю беруши и буду терпеть", nextId: 32 }
+            { text: "🔒 Do not implement a backdoor", nextId: 201 },
+            { text: "⚠️ Implement a backdoor", nextId: 202 }
         ]
     },
 
-    // --- ВЕТКИ (результаты выбора) ---
-    9: { id: 9, title: "Честность", text: "Владелец кошелька отблагодарил вас и предложил дружбу. Вы чувствуете гордость.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    10: { id: 10, title: "Жадность", text: "Вы забрали деньги, но совесть мучает. Через неделю вас обокрали. Потеряли больше.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    11: { id: 11, title: "Полумера", text: "Полиция нашла владельца по документам, но половины денег не хватало. Вас вычислили по камерам.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    12: { id: 12, title: "Честность перед родителями", text: "Родители друга поблагодарили за правду. Друг обиделся, но потом извинился.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    13: { id: 13, title: "Покрывательство", text: "Друг попал в беду на вечеринке. Вас тоже втянули в разбирательства.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    14: { id: 14, title: "Уклонение", text: "Вы не солгали, но и не сказали правду. Друг сделал по-своему и поплатился.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    15: { id: 15, title: "Молчание", text: "Коллега получил повышение, а вас загрузили работой. Вы жалеете.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    16: { id: 16, title: "Справедливость", text: "Начальник разобрался, идею признали вашей. Вас повысили.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    17: { id: 17, title: "Анонимность", text: "Коллегу понизили, но вы остались в тени. Атмосфера в коллективе ухудшилась.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    18: { id: 18, title: "Помощь через полицию", text: "Полиция приехала быстро, подростки разбежались. Прохожий благодарен.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    19: { id: 19, title: "Безразличие", text: "Вы прошли мимо, но потом узнали, что прохожему сильно досталось. Вас мучает совесть.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    20: { id: 20, title: "Риск", text: "Ваш крик отвлёк хулиганов, но они побежали за вами. Чудом удалось убежать.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    21: { id: 21, title: "Карьера", text: "Вы переехали, достигли успеха, но чувствуете пустоту без любимого человека.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    22: { id: 22, title: "Любовь", text: "Вы остались, построили семью, но иногда жалеете об упущенных возможностях.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    23: { id: 23, title: "Компромисс", text: "Вы переехали вместе. Партнёр нашёл работу, вы довольны обоими решениями.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    24: { id: 24, title: "Игнорирование", text: "Кража повторилась, и в итоге близкого поймали. Вы чувствуете вину.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    25: { id: 25, title: "Нравоучение", text: "Близкий вернул вещь и больше не ворует. Вы гордитесь своим влиянием.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    26: { id: 26, title: "Тайное возвращение", text: "Вещь вернули, но близкий ничего не понял и продолжил красть в другом месте.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    27: { id: 27, title: "Кража", text: "Вы украли лекарство, родственник выжил. Но вас поймали и посадили.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    28: { id: 28, title: "Закон", text: "Вы нашли благотворительный фонд, который помог с лекарством. Всё обошлось.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    29: { id: 29, title: "Краудфандинг", text: "Люди собрали деньги, лекарство купили. Родственник спасён, и вы не нарушили закон.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    30: { id: 30, title: "Полиция", text: "Приехали, составили протокол. Соседи затаили злобу, но музыка стихла.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    31: { id: 31, title: "Дипломатия", text: "Вы договорились: они слушают музыку до 22:00. Компромисс найден.", options: [{ text: "Вернуться к списку", nextId: null }] },
-    32: { id: 32, title: "Терпение", text: "Вы купили беруши, но не высыпаетесь из-за вибрации. Здоровье ухудшилось.", options: [{ text: "Вернуться к списку", nextId: null }] },
+    3: {
+        id: 3,
+        title: "Interview with AI Assistant",
+        text: "You've been invited to an online interview at a large IT company abroad. Due to stress, you feel unsure and consider using an AI assistant to answer questions in real time. What do you do?",
+        options: [
+            { text: "🧠 Use your own knowledge", nextId: 301 },
+            { text: "🤖 Use AI assistance", nextId: 302 }
+        ]
+    },
+
+    4: {
+        id: 4,
+        title: "VIP User Inspection",
+        text: "You are a system administrator. The monitoring system has detected signs that a VIP client may be violating the contract terms. You have the option to perform an in-depth check of their data, but this significantly increases the risk of leaking their confidential information. What do you do?",
+        options: [
+            { text: "❌ Do not perform additional check", nextId: 401 },
+            { text: "🔍 Perform check despite the risk", nextId: 402 }
+        ]
+    },
+
     101: {
         id: 101,
         title: "Containment Decision",
@@ -118,7 +49,6 @@ const dilemmas = {
         ]
     },
 
-    // LEVEL 2B
     102: {
         id: 102,
         title: "Silent Investigation",
@@ -129,7 +59,6 @@ const dilemmas = {
         ]
     },
 
-    // LEVEL 3A1
     103: {
         id: 103,
         title: "Total Shutdown",
@@ -140,7 +69,6 @@ const dilemmas = {
         ]
     },
 
-    // LEVEL 3A2
     104: {
         id: 104,
         title: "Partial Isolation",
@@ -151,7 +79,6 @@ const dilemmas = {
         ]
     },
 
-    // LEVEL 3B1
     105: {
         id: 105,
         title: "Forensic Priority",
@@ -162,7 +89,6 @@ const dilemmas = {
         ]
     },
 
-    // LEVEL 3B2
     106: {
         id: 106,
         title: "Operational Recovery",
@@ -180,49 +106,42 @@ const dilemmas = {
         text: "The attackers provide a working decryptor and systems recover quickly. Months later, your company becomes known among ransomware groups as a business willing to pay.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     108: {
         id: 108,
         title: "Ending: Expensive Integrity",
         text: "Recovery takes weeks and some data is permanently lost. However, regulators and partners praise the company for refusing to fund cybercriminals.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     109: {
         id: 109,
         title: "Ending: Controlled Damage",
         text: "External responders identify hidden persistence mechanisms and fully remove the attackers. The incident is expensive, but contained.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     110: {
         id: 110,
         title: "Ending: Silent Spread",
         text: "Your exhausted internal team misses several compromised systems. Two weeks later, ransomware returns.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     111: {
         id: 111,
         title: "Ending: Painful Transparency",
         text: "The breach becomes public immediately. The company suffers short-term reputational damage, but customers appreciate the honesty.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     112: {
         id: 112,
         title: "Ending: The Leak",
         text: "Journalists eventually uncover the breach themselves. The company is accused of hiding the incident from customers and regulators.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     113: {
         id: 113,
         title: "Ending: Under Investigation",
         text: "Law enforcement assists with threat intelligence and attribution. Recovery succeeds slowly under heavy regulatory oversight.",
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
-
     114: {
         id: 114,
         title: "Ending: Back to Business",
@@ -230,12 +149,48 @@ const dilemmas = {
         options: [{ text: "Return to dilemmas", nextId: null }]
     },
 
+    201: {
+        id: 201,
+        title: "Outcome: No backdoor",
+        text: "You delivered a clean solution. The client accepted the work but disappeared without paying the remaining 70%. You sued unsuccessfully for two years and went bankrupt. However, you gained a reputation in the IT community as an honest developer. Six months later, a new trustworthy client gave you 100% upfront payment precisely because of your reputation. You lost money on the first project but earned lasting market trust.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    },
+    202: {
+        id: 202,
+        title: "Outcome: Backdoor found",
+        text: "You implemented the backdoor. The client didn't pay — you remotely disabled the system and got your money. But a month later, they hired security experts who found the backdoor. The court ruled it as extortion and unauthorized access. You received a suspended sentence, a fine of three times the contract amount, and a 5‑year ban on developing software for legal entities. You ended up on international vendor blacklists and lost your profession.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    },
+
+    301: {
+        id: 301,
+        title: "Outcome: Own knowledge",
+        text: "You didn't use AI. You answered only half of the questions and weren't hired, but they suggested you improve your skills and reapply. You preserved your reputation, identified your weak points, and now know exactly what questions to expect in a second interview.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    },
+    302: {
+        id: 302,
+        title: "Outcome: AI used",
+        text: "You answered using AI. The interviewer suspected something was off (darting eyes, dry answers) and rejected your application. You will never be allowed to apply to this company again, and your information may have been shared with partner companies. Your reputation is ruined.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    },
+
+    401: {
+        id: 401,
+        title: "Outcome: No inspection",
+        text: "You left everything as is. Three months later, it turned out the VIP client had used the service to launch DDoS attacks on government resources. The company got blacklisted and received a multi-million dollar fine. However, you followed the protocol strictly — your reputation as a reliable employee remained intact. The company allocated budget for a secure monitoring system. No one blamed you personally.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    },
+    402: {
+        id: 402,
+        title: "Outcome: Inspection with leak",
+        text: "You found proof of the violation and reported it to management — the client was blocked. But during the inspection, a fragment of their data leaked into the public domain. The client sued and won: the company paid a record penalty and shut down its premium service. You were fired for 'security policy violation', and now no company handling critical data will hire you.",
+        options: [{ text: "🏠 Back to dilemma list", nextId: null }]
+    }
 };
 
-// Хранилище выбранных ответов (для корневых дилемм не нужно, так как ветвление ведёт к результатам)
-// Но мы не сохраняем ответы, т.к. каждый путь уникален. Можно сохранять историю, но для простоты — нет.
 
-let historyStack = []; // стек для навигации назад (id дилемм)
+let historyStack = [];
 
 const listView = document.getElementById('listView');
 const detailView = document.getElementById('detailView');
@@ -243,10 +198,10 @@ const dilemmasGrid = document.getElementById('dilemmasGrid');
 const detailContainer = document.getElementById('detailCard');
 const backToListBtn = document.getElementById('backToListBtn');
 
-// Отображение списка корневых дилемм (id с 1 по 8)
+
 function renderListView() {
     dilemmasGrid.innerHTML = '';
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 9; i++) {
         const d = dilemmas[i];
         if (!d) continue;
         const card = document.createElement('div');
@@ -254,16 +209,12 @@ function renderListView() {
         card.innerHTML = `
             <i class="fas fa-question-circle"></i>
             <h3>${escapeHtml(d.title)}</h3>
-            <div class="preview-status">
-                <i class="far fa-circle"></i> Начать
-            </div>
         `;
         card.addEventListener('click', () => openDetail(d.id));
         dilemmasGrid.appendChild(card);
     }
 }
 
-// Открыть дилемму по id, добавить в историю
 function openDetail(id, addToHistory = true) {
     const dilemma = dilemmas[id];
     if (!dilemma) return;
@@ -294,10 +245,8 @@ function openDetail(id, addToHistory = true) {
         btn.addEventListener('click', () => {
             const nextId = btn.getAttribute('data-nextid');
             if (nextId === 'null') {
-                // Конец ветки: возвращаемся к списку
                 backToList();
             } else {
-                // Переход к следующей дилемме
                 openDetail(parseInt(nextId), true);
             }
         });
@@ -307,7 +256,6 @@ function openDetail(id, addToHistory = true) {
     detailView.style.display = 'block';
 }
 
-// Возврат к списку (очистить историю)
 function backToList() {
     historyStack = [];
     listView.style.display = 'block';
@@ -315,14 +263,13 @@ function backToList() {
     renderListView();
 }
 
-// Кнопка "Назад" (возврат на предыдущую дилемму)
 function goBack() {
     if (historyStack.length <= 1) {
         backToList();
     } else {
-        historyStack.pop(); // убираем текущую
+        historyStack.pop();
         const prevId = historyStack[historyStack.length - 1];
-        openDetail(prevId, false); // открываем предыдущую без добавления в историю
+        openDetail(prevId, false);
     }
 }
 
@@ -340,8 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
     listView.style.display = 'block';
     detailView.style.display = 'none';
     
-    // Изменяем поведение кнопки "Ко всем дилеммам" на сброс
-    backToListBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Назад / в список';
+    backToListBtn.innerHTML = '<i class="fas fa-arrow-left"></i> Back / to the list';
     backToListBtn.onclick = () => {
         if (detailView.style.display === 'block') {
             goBack();
